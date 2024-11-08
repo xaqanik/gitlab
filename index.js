@@ -1,5 +1,7 @@
 var express = require('express');
 var app = express();
+var x=10;
+var z=20;
 
 app.get('/', function (req, res) {
     res.send('{ "response": "Hello From Thetips4you" }');
