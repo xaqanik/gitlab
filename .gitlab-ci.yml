@@ -9,7 +9,7 @@ stages:
 
 variables:
   DOCKER_DRIVER: overlay2
-  DOCKER_IMAGE: $CI_REGISTRY_IMAGE
+  DOCKER_IMAGE: docker.io/xaqani90/dockrepo:latest
 
 before_script:
   - docker info
@@ -17,12 +17,13 @@ before_script:
 build:
   stage: build
   script:
-    - docker build --pull -t $DOCKER_IMAGE .
+    - docker build -t $DOCKER_IMAGE .
 
 push:
   stage: push
   script:
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
     - docker push $DOCKER_IMAGE
   only:
     - main
+
