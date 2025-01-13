@@ -1,0 +1,24 @@
+stages:
+  - build
+  - run
+
+build_docker_image:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  variables:
+    DOCKER_DRIVER: overlay2
+  script:
+    - docker build -t my-node-app .
+    - docker images
+
+run_docker_app:
+  stage: run
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker run -d -p 8080:8080 my-node-app
+    - docker ps
+
