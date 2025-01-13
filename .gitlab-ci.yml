@@ -12,6 +12,7 @@ build_docker_image:
   script:
     - docker build -t my-node-app .
     - docker images
+    - docker --version
 
 run_docker_app:
   stage: run
