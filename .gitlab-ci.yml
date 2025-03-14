@@ -25,6 +25,4 @@ push:
   script:
     - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
     - docker push my_app
-  only:
-    - main
 
